@@ -34,12 +34,16 @@ long VW_cycle_time, counter_of_simulations;     // zmienne pomocnicze potrzebne 
 long start_time = clock();          // czas od poczatku dzialania aplikacji  
 long group_existing_time = clock();    // czas od pocz¹tku istnienia grupy roboczej (czas od uruchom. pierwszej aplikacji)     
 
+
 // Nowe globalne zmienne dla stanu negocjacji
 enum NegotiationState {
 	NEG_IDLE,
 	NEG_AWAITING_RESPONSE,
 	NEG_RECEIVED_OFFER,
-	NEG_COOPERATING
+	NEG_COOPERATING,
+	NEG_ENTERING_CASH_OFFER,  // Użytkownik wprowadza procent dla gotówki
+	NEG_ENTERING_FUEL_OFFER   // Użytkownik wprowadza procent dla paliwa
+
 };
 
 NegotiationState current_negotiation_state = NEG_IDLE;
@@ -50,6 +54,11 @@ float last_proposed_cash_split_by_me = 0.5f;
 float last_proposed_fuel_split_by_me = 0.5f;
 float last_received_cash_split_from_partner = 0.5f;
 float last_received_fuel_split_from_partner = 0.5f;
+char negotiation_status_message[512] = ""; // Nowy napis dla statusu negocjacji
+long negotiation_message_display_time = 0; // Czas, do którego wiadomość powinna być widoczna
+const long NEGOTIATION_MESSAGE_DURATION = 5000; // Czas wyświetlania w milisekundach (5 sekund)
+char current_offer_input_buffer[10]; // Bufor na wprowadzane cyfry (np. "5", "50", "100")
+int current_offer_input_length = 0;
 
 multicast_net *multi_reciv;         // wsk do obiektu zajmujacego sie odbiorem komunikatow
 multicast_net *multi_send;          //   -||-  wysylaniem komunikatow
@@ -365,8 +374,11 @@ void VirtualWorldCycle()
 		if (fFps != 0) fDt = 1.0 / fFps; else fDt = 1;
 
 		sprintf(par_view.inscription1, " %0.0f_fps, fuel = %0.2f, money = %d,", fFps, my_vehicle->state.amount_of_fuel, my_vehicle->state.money);
+
+
 		if (counter_of_simulations % 500 == 0) sprintf(par_view.inscription2, "");
 	}
+
 
 	terrain.DeleteObjectsFromSectors(my_vehicle);
 	my_vehicle->Simulation(fDt);                    // symulacja w³asnego obiektu
@@ -412,6 +424,67 @@ void VirtualWorldCycle()
 		int iRozmiar = multi_send->send((char*)&frame, sizeof(Frame));
 
 		sprintf(par_view.inscription2, "Wziecie_przedmiotu_o_wartosci_ %f", my_vehicle->taking_value);
+
+		// Logika podziału zasobów, jeśli współpracujemy
+		if (current_negotiation_state == NEG_COOPERATING && negotiation_partner_id != -1)
+		{
+			Item* taken_item = &terrain.p[my_vehicle->number_of_taking_item]; // Wskaźnik do zebranego przedmiotu
+			float collected_value = my_vehicle->taking_value; // Wartość zebrana przez gracza (już uwzględnia jego umiejętności)
+
+			if (taken_item->type == ITEM_COIN)
+			{
+				float partner_share_cash = collected_value * (1.0f - agreed_cash_split_mine);
+				if (partner_share_cash > 0)
+				{
+					// Odejmij udział partnera od swoich pieniędzy (bo `my_vehicle->taking_value` dodało już całość do `my_vehicle->state.money`)
+					my_vehicle->state.money -= partner_share_cash;
+
+					// Wyślij udział partnerowi
+					Frame transfer_frame;
+					transfer_frame.frame_type = TRANSFER;
+					transfer_frame.iID = my_vehicle->iID; // Nadawca transferu
+					transfer_frame.iID_receiver = negotiation_partner_id;
+					transfer_frame.transfer_type = MONEY; // Użyj enumeracji z main.cpp, jeśli tam jest
+					transfer_frame.transfer_value = partner_share_cash;
+					// Pozostałe pola ramki można uzupełnić wg potrzeb lub zostawić domyślne/nieużywane
+					transfer_frame.negotiating_partner_ID = 0;
+					transfer_frame.state = my_vehicle->State(); // Stan po odjęciu udziału partnera
+					transfer_frame.existing_time = clock() - start_time;
+
+					multi_send->send((char*)&transfer_frame, sizeof(Frame));
+					sprintf(negotiation_status_message, "Zebrano monete: %.0f. Przekazano %.0f (%.0f%%) do ID %d",
+						collected_value, partner_share_cash, (1.0f - agreed_cash_split_mine) * 100.0f, negotiation_partner_id);
+					negotiation_message_display_time = clock() + NEGOTIATION_MESSAGE_DURATION;
+				}
+			}
+			else if (taken_item->type == ITEM_BARREL)
+			{
+				float partner_share_fuel = collected_value * (1.0f - agreed_fuel_split_mine);
+				if (partner_share_fuel > 0)
+				{
+					// Odejmij udział partnera od swojego paliwa
+					my_vehicle->state.amount_of_fuel -= partner_share_fuel;
+
+					Frame transfer_frame;
+					transfer_frame.frame_type = TRANSFER;
+					transfer_frame.iID = my_vehicle->iID;
+					transfer_frame.iID_receiver = negotiation_partner_id;
+					transfer_frame.transfer_type = FUEL; // Użyj enumeracji z main.cpp, jeśli tam jest
+					transfer_frame.transfer_value = partner_share_fuel;
+					transfer_frame.state = my_vehicle->State(); // Stan po odjęciu udziału partnera
+					transfer_frame.existing_time = clock() - start_time;
+
+					multi_send->send((char*)&transfer_frame, sizeof(Frame));
+					sprintf(negotiation_status_message, "Zebrano paliwo: %.1f. Przekazano %.1f (%.0f%%) do ID %d",
+						collected_value, partner_share_fuel, (1.0f - agreed_fuel_split_mine) * 100.0f, negotiation_partner_id);
+					negotiation_message_display_time = clock() + NEGOTIATION_MESSAGE_DURATION;
+				}
+			}
+		}
+		else // Jeśli nie współpracujemy, wyświetl standardowy komunikat
+		{
+			sprintf(par_view.inscription2, "Wziecie_przedmiotu_o_wartosci_ %f", my_vehicle->taking_value);
+		}
 
 		my_vehicle->number_of_taking_item = -1;
 		my_vehicle->taking_value = 0;
@@ -795,6 +868,239 @@ void MessagesHandling(UINT message_type, WPARAM wParam, LPARAM lParam)
 			}
 			break;
 		} // Koniec case 'N'
+		case 'Y': // Klawisz do akceptacji otrzymanej oferty negocjacyjnej
+		{
+			if (current_negotiation_state == NEG_RECEIVED_OFFER && negotiation_partner_id != -1)
+			{
+				Frame frame;
+				frame.frame_type = NEGOTIATION_ACCEPT;
+				frame.iID = my_vehicle->iID;
+				frame.state = my_vehicle->State();
+				frame.iID_receiver = negotiation_partner_id; // Odpowiedź do partnera
+				
+				// W wiadomości ACCEPT wysyłamy ofertę, którą akceptujemy
+				// (czyli ostatnią ofertę partnera)
+				frame.proposed_cash_split_sender = last_received_cash_split_from_partner;
+				frame.proposed_fuel_split_sender = last_received_fuel_split_from_partner;
+				
+				frame.negotiating_partner_ID = negotiation_partner_id;
+				frame.existing_time = clock() - start_time;
+
+				int iRozmiar = multi_send->send((char*)&frame, sizeof(Frame));
+				if (iRozmiar == sizeof(Frame))
+				{
+					sprintf(par_view.inscription1, "Zaakceptowano oferte od ID: %d. Wspolpraca aktywna.", negotiation_partner_id);
+					current_negotiation_state = NEG_COOPERATING;
+					// Nasz udział to 1.0 - to co partner proponował (bo my to akceptujemy)
+					agreed_cash_split_mine = 1.0f - last_received_cash_split_from_partner;
+					agreed_fuel_split_mine = 1.0f - last_received_fuel_split_from_partner;
+                    // Można by wysłać jeszcze NEGOTIATION_CONFIRM_COOP do partnera
+                    // aby obie strony wiedziały na 100%, że współpraca jest aktywna
+				}
+				else
+				{
+					sprintf(par_view.inscription1, "Blad wysylania akceptacji negocjacji.");
+				}
+			}
+			else
+			{
+				sprintf(par_view.inscription2, "Brak oferty do zaakceptowania.");
+			}
+			break;
+		}
+
+		case 'P': // Klawisz do odrzucenia/rezygnacji z negocjacji ('P' jak Pass/Passed)
+		{
+			if ((current_negotiation_state == NEG_RECEIVED_OFFER || current_negotiation_state == NEG_AWAITING_RESPONSE) && negotiation_partner_id != -1)
+			{
+				Frame frame;
+				frame.frame_type = NEGOTIATION_RESIGN;
+				frame.iID = my_vehicle->iID;
+				frame.state = my_vehicle->State();
+				frame.iID_receiver = negotiation_partner_id;
+				frame.negotiating_partner_ID = negotiation_partner_id;
+				// Pola propozycji nie są tu istotne, ale można je wyzerować
+				frame.proposed_cash_split_sender = 0.0f;
+				frame.proposed_fuel_split_sender = 0.0f;
+				frame.existing_time = clock() - start_time;
+
+				int iRozmiar = multi_send->send((char*)&frame, sizeof(Frame));
+				if (iRozmiar == sizeof(Frame))
+				{
+					sprintf(par_view.inscription1, "Odrzucono/Zrezygnowano z negocjacji z ID: %d.", negotiation_partner_id);
+				}
+				else
+				{
+					sprintf(par_view.inscription1, "Blad wysylania rezygnacji z negocjacji.");
+				}
+				current_negotiation_state = NEG_IDLE;
+				negotiation_partner_id = -1;
+			}
+			else
+			{
+				sprintf(par_view.inscription2, "Brak aktywnych negocjacji do odrzucenia.");
+			}
+			break;
+		}
+
+		case 'C': // Klawisz do złożenia własnej oferty (kontroferty)
+		{
+			fprintf(f, "Klawisz 'C' wcisniety. Aktualny stan negocjacji: %d, partner_id: %d\n", current_negotiation_state, negotiation_partner_id);
+			if (current_negotiation_state == NEG_RECEIVED_OFFER && negotiation_partner_id != -1)
+			{
+				current_negotiation_state = NEG_ENTERING_CASH_OFFER; // Zmień stan
+				current_offer_input_buffer[0] = '\0'; // Wyczyść bufor
+				current_offer_input_length = 0;
+				sprintf(negotiation_status_message, "Podaj swoj %% udzialu w GOTOWCE (0-100) dla ID %d, Enter zatwierdza:", negotiation_partner_id);
+                negotiation_message_display_time = clock() + NEGOTIATION_MESSAGE_DURATION * 2; // Dłuższy czas na input
+				fprintf(f, "Stan zmieniony na NEG_ENTERING_CASH_OFFER. Komunikat: %s\n", negotiation_status_message); // NOWY LOG
+
+			}
+			else if (current_negotiation_state == NEG_IDLE) {
+                 sprintf(negotiation_status_message, "Najpierw zainicjuj negocjacje klawiszem 'N' po wybraniu partnera.");
+                 negotiation_message_display_time = clock() + NEGOTIATION_MESSAGE_DURATION;
+            }
+			else
+			{
+				sprintf(negotiation_status_message, "Nie mozna zlozyc oferty w tym momencie.");
+                negotiation_message_display_time = clock() + NEGOTIATION_MESSAGE_DURATION;
+			}
+			break;
+		}
+		case '0': case '1': case '2': case '3': case '4':
+		case '5': case '6': case '7': case '8': case '9':
+		{
+			if (current_negotiation_state == NEG_ENTERING_CASH_OFFER || current_negotiation_state == NEG_ENTERING_FUEL_OFFER)
+			{
+				if (current_offer_input_length < 3)
+				{
+					current_offer_input_buffer[current_offer_input_length++] = (char)LOWORD(wParam);
+					current_offer_input_buffer[current_offer_input_length] = '\0';
+					if (current_negotiation_state == NEG_ENTERING_CASH_OFFER) {
+						// UŻYJ negotiation_status_message
+						sprintf(negotiation_status_message, "%% Gotowka: %s_ (0-100). Enter zatwierdza.", current_offer_input_buffer);
+					}
+					else { // NEG_ENTERING_FUEL_OFFER
+					 // UŻYJ negotiation_status_message
+						sprintf(negotiation_status_message, "%% Paliwo: %s_ (0-100). Enter zatwierdza.", current_offer_input_buffer);
+					}
+					negotiation_message_display_time = clock() + NEGOTIATION_MESSAGE_DURATION * 2;
+				}
+			}
+			// ...
+			break;
+		}
+
+		case VK_BACK: // Klawisz Backspace
+		{
+			if (current_negotiation_state == NEG_ENTERING_CASH_OFFER || current_negotiation_state == NEG_ENTERING_FUEL_OFFER)
+			{
+				if (current_offer_input_length > 0)
+				{
+					// ...
+					if (current_negotiation_state == NEG_ENTERING_CASH_OFFER) {
+						// UŻYJ negotiation_status_message
+						sprintf(negotiation_status_message, "%% Gotowka: %s_ (0-100). Enter zatwierdza.", current_offer_input_buffer);
+					}
+					else { // NEG_ENTERING_FUEL_OFFER
+					 // UŻYJ negotiation_status_message
+						sprintf(negotiation_status_message, "%% Paliwo: %s_ (0-100). Enter zatwierdza.", current_offer_input_buffer);
+					}
+					negotiation_message_display_time = clock() + NEGOTIATION_MESSAGE_DURATION * 2;
+				}
+			}
+			break;
+		}
+
+		case VK_RETURN: // Klawisz Enter do zatwierdzania
+		{
+			if (current_negotiation_state == NEG_ENTERING_CASH_OFFER)
+			{
+				if (current_offer_input_length > 0)
+				{
+					int cash_percent = atoi(current_offer_input_buffer);
+					if (cash_percent >= 0 && cash_percent <= 100)
+					{
+						last_proposed_cash_split_by_me = (float)cash_percent / 100.0f;
+						current_negotiation_state = NEG_ENTERING_FUEL_OFFER;
+						current_offer_input_buffer[0] = '\0'; // Wyczyść bufor dla paliwa
+						current_offer_input_length = 0;
+						sprintf(negotiation_status_message, "Podaj swoj %% udzialu w PALIWIE (0-100) dla ID %d, Enter zatwierdza:", negotiation_partner_id);
+                        negotiation_message_display_time = clock() + NEGOTIATION_MESSAGE_DURATION * 2;
+					}
+					else
+					{
+						sprintf(negotiation_status_message, "Niepoprawna wartosc %% gotowki (0-100). Podaj ponownie:");
+                        negotiation_message_display_time = clock() + NEGOTIATION_MESSAGE_DURATION;
+						current_offer_input_buffer[0] = '\0';
+						current_offer_input_length = 0;
+					}
+				}
+			}
+			else if (current_negotiation_state == NEG_ENTERING_FUEL_OFFER)
+			{
+				if (current_offer_input_length > 0)
+				{
+					int fuel_percent = atoi(current_offer_input_buffer);
+					if (fuel_percent >= 0 && fuel_percent <= 100)
+					{
+						last_proposed_fuel_split_by_me = (float)fuel_percent / 100.0f;
+						
+						// Mamy obie wartości, można wysłać ofertę
+						Frame frame;
+						frame.frame_type = NEGOTIATION_OFFER;
+						frame.iID = my_vehicle->iID;
+						frame.state = my_vehicle->State();
+						frame.iID_receiver = negotiation_partner_id;
+						
+						frame.proposed_cash_split_sender = last_proposed_cash_split_by_me;
+						frame.proposed_fuel_split_sender = last_proposed_fuel_split_by_me;
+						
+						frame.negotiating_partner_ID = negotiation_partner_id;
+						frame.existing_time = clock() - start_time;
+
+						int iRozmiar = multi_send->send((char*)&frame, sizeof(Frame));
+						if (iRozmiar == sizeof(Frame))
+						{
+							sprintf(negotiation_status_message, "Wyslano kontroferte (C:%.0f%% F:%.0f%%) do ID %d.",
+                                last_proposed_cash_split_by_me * 100.0f, last_proposed_fuel_split_by_me * 100.0f, negotiation_partner_id);
+                            negotiation_message_display_time = clock() + NEGOTIATION_MESSAGE_DURATION;
+							current_negotiation_state = NEG_AWAITING_RESPONSE; // Czekamy na odpowiedź
+						}
+						else
+						{
+							sprintf(negotiation_status_message, "Blad wysylania kontroferty.");
+                            negotiation_message_display_time = clock() + NEGOTIATION_MESSAGE_DURATION;
+							current_negotiation_state = NEG_RECEIVED_OFFER; // Wróć do poprzedniego stanu, aby móc spróbować ponownie
+						}
+						current_offer_input_buffer[0] = '\0'; // Wyczyść bufor na wszelki wypadek
+						current_offer_input_length = 0;
+					}
+					else
+					{
+						sprintf(negotiation_status_message, "Niepoprawna wartosc %% paliwa (0-100). Podaj ponownie:");
+                        negotiation_message_display_time = clock() + NEGOTIATION_MESSAGE_DURATION;
+						current_offer_input_buffer[0] = '\0';
+						current_offer_input_length = 0;
+					}
+				}
+			}
+			break;
+		}
+        case VK_ESCAPE: // Klawisz Escape do anulowania wprowadzania oferty
+        {
+            if (current_negotiation_state == NEG_ENTERING_CASH_OFFER || current_negotiation_state == NEG_ENTERING_FUEL_OFFER)
+            {
+                current_negotiation_state = NEG_RECEIVED_OFFER; // Wróć do stanu otrzymanej oferty
+                current_offer_input_buffer[0] = '\0';
+                current_offer_input_length = 0;
+                // Przywróć poprzedni komunikat o otrzymanej ofercie
+                sprintf(negotiation_status_message, "Oferta negocjacji od ID %d (C:%.0f%% F:%.0f%%). Klawisze: Y-Akcept, O-Oferta, P-Odrzuc", 
+                        negotiation_partner_id, last_received_cash_split_from_partner * 100.0f, last_received_fuel_split_from_partner * 100.0f);
+                negotiation_message_display_time = clock() + NEGOTIATION_MESSAGE_DURATION;
+            }
+            break;
+        }
 		case VK_MENU:
 		{
 			ALT_pressed = 1;
