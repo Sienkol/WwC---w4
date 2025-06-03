@@ -1,0 +1,44 @@
+﻿cl : wiersz polecenia warning D9035: Opcja "Gm" jest przestarzała i będzie usunięta w przyszłych wydaniach
+  main.cpp
+D:\studia\współpraca w cyberprzestrzeni\objects.h(6,21): warning C4091: "extern ": zignorowano na lewo od "Terrain" podczas gdy brak deklaracji zmiennej
+D:\studia\współpraca w cyberprzestrzeni\main.cpp(25,11): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\studia\współpraca w cyberprzestrzeni\main.cpp(207,53): warning C4244: "+=": konwersja z "float" do "long", możliwa utrata danych
+D:\studia\współpraca w cyberprzestrzeni\main.cpp(224,5): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\studia\współpraca w cyberprzestrzeni\main.cpp(251,5): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\studia\współpraca w cyberprzestrzeni\main.cpp(269,5): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\studia\współpraca w cyberprzestrzeni\main.cpp(290,5): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\studia\współpraca w cyberprzestrzeni\main.cpp(365,28): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
+D:\studia\współpraca w cyberprzestrzeni\main.cpp(367,3): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\studia\współpraca w cyberprzestrzeni\main.cpp(368,42): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\studia\współpraca w cyberprzestrzeni\main.cpp(387,3): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\studia\współpraca w cyberprzestrzeni\main.cpp(414,3): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\studia\współpraca w cyberprzestrzeni\main.cpp(361,8): warning C4101: "text": lokalna zmienna, do której nie istnieje odwołanie
+D:\studia\współpraca w cyberprzestrzeni\main.cpp(386,8): warning C4101: "text": lokalna zmienna, do której nie istnieje odwołanie
+D:\studia\współpraca w cyberprzestrzeni\main.cpp(458,44): warning C4244: "=": konwersja z "long" do "float", możliwa utrata danych
+D:\studia\współpraca w cyberprzestrzeni\main.cpp(459,50): warning C4244: "-=": konwersja z "float" do "long", możliwa utrata danych
+D:\studia\współpraca w cyberprzestrzeni\main.cpp(460,3): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\studia\współpraca w cyberprzestrzeni\main.cpp(467,3): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\studia\współpraca w cyberprzestrzeni\main.cpp(708,61): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
+D:\studia\współpraca w cyberprzestrzeni\main.cpp(717,57): warning C4305: "/=": obcięcie z "double" do "float"
+D:\studia\współpraca w cyberprzestrzeni\main.cpp(721,55): warning C4305: "*=": obcięcie z "double" do "float"
+D:\studia\współpraca w cyberprzestrzeni\main.cpp(870,56): warning C4305: "/=": obcięcie z "double" do "float"
+D:\studia\współpraca w cyberprzestrzeni\main.cpp(877,55): warning C4305: "*=": obcięcie z "double" do "float"
+D:\studia\współpraca w cyberprzestrzeni\main.cpp(892,40): warning C4305: "+=": obcięcie z "double" do "float"
+D:\studia\współpraca w cyberprzestrzeni\main.cpp(897,40): warning C4305: "-=": obcięcie z "double" do "float"
+D:\studia\współpraca w cyberprzestrzeni\main.cpp(907,24): warning C4305: "/=": obcięcie z "double" do "float"
+D:\studia\współpraca w cyberprzestrzeni\main.cpp(915,24): warning C4305: "*=": obcięcie z "double" do "float"
+D:\studia\współpraca w cyberprzestrzeni\main.cpp(664,7): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\studia\współpraca w cyberprzestrzeni\main.cpp(776,7): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\studia\współpraca w cyberprzestrzeni\main.cpp(784,7): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\studia\współpraca w cyberprzestrzeni\main.cpp(789,6): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\studia\współpraca w cyberprzestrzeni\main.cpp(794,5): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\studia\współpraca w cyberprzestrzeni\main.cpp(956,4): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\studia\współpraca w cyberprzestrzeni\main.cpp(1067,4): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\studia\współpraca w cyberprzestrzeni\main.cpp(1068,4): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\studia\współpraca w cyberprzestrzeni\main.cpp(1069,4): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\studia\współpraca w cyberprzestrzeni\main.cpp(1073,5): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\studia\współpraca w cyberprzestrzeni\main.cpp(1074,5): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\studia\współpraca w cyberprzestrzeni\main.cpp(1075,5): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\studia\współpraca w cyberprzestrzeni\main.cpp(1081,6): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+graphics.obj : warning LNK4075: zignorowano opcję „/EDITANDCONTINUE” z powodu określenia opcji „/SAFESEH”
+  wzr_vis.vcxproj -> D:\studia\współpraca w cyberprzestrzeni\Debug\wzr_vis.exe

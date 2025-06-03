@@ -1,0 +1,834 @@
+
+Odczyt danych o terrainie z pliku teren2.map
+
+  size sektora = 480.000000
+  czas odnowy przedmiotu = 120.000000
+  if_toroidal_world = 0
+  border_x = -1.000000
+  border_z = -1.000000
+  liczba sekt. = 372
+    mapa w=0, k=0, l.oczek = 16
+    mapa w=0, k=1, l.oczek = 16
+    mapa w=-1, k=0, l.oczek = 16
+    mapa w=0, k=-1, l.oczek = 8
+    mapa w=1, k=-2, l.oczek = 8
+    mapa w=2, k=-3, l.oczek = 8
+    mapa w=2, k=-1, l.oczek = 8
+    mapa w=1, k=0, l.oczek = 8
+    mapa w=16, k=-9, l.oczek = 8
+    mapa w=20, k=-9, l.oczek = 8
+    mapa w=-1, k=1, l.oczek = 16
+    mapa w=-1, k=-1, l.oczek = 8
+    mapa w=-2, k=0, l.oczek = 8
+    mapa w=0, k=-2, l.oczek = 8
+    mapa w=1, k=-3, l.oczek = 8
+    mapa w=1, k=-1, l.oczek = 8
+    mapa w=3, k=-3, l.oczek = 8
+    mapa w=2, k=0, l.oczek = 8
+    mapa w=1, k=1, l.oczek = 8
+    mapa w=5, k=-5, l.oczek = 8
+    mapa w=7, k=-7, l.oczek = 8
+    mapa w=-3, k=0, l.oczek = 8
+    mapa w=-2, k=1, l.oczek = 8
+    mapa w=0, k=-3, l.oczek = 8
+    mapa w=3, k=0, l.oczek = 8
+    mapa w=20, k=-3, l.oczek = 8
+    mapa w=20, k=-11, l.oczek = 8
+    mapa w=2, k=-2, l.oczek = 8
+    mapa w=0, k=-4, l.oczek = 8
+    mapa w=4, k=0, l.oczek = 8
+    mapa w=6, k=-6, l.oczek = 8
+    mapa w=3, k=-2, l.oczek = 8
+    mapa w=5, k=0, l.oczek = 8
+    mapa w=2, k=1, l.oczek = 8
+    mapa w=0, k=-5, l.oczek = 8
+    mapa w=-3, k=1, l.oczek = 8
+    mapa w=3, k=-1, l.oczek = 8
+    mapa w=0, k=-6, l.oczek = 8
+    mapa w=6, k=0, l.oczek = 8
+    mapa w=-2, k=-1, l.oczek = 8
+    mapa w=-1, k=-2, l.oczek = 8
+    mapa w=0, k=-7, l.oczek = 8
+    mapa w=7, k=0, l.oczek = 8
+    mapa w=4, k=-4, l.oczek = 8
+    mapa w=0, k=-8, l.oczek = 8
+    mapa w=8, k=0, l.oczek = 8
+    mapa w=1, k=-4, l.oczek = 8
+    mapa w=4, k=-1, l.oczek = 8
+    mapa w=9, k=0, l.oczek = 8
+    mapa w=10, k=0, l.oczek = 8
+    mapa w=4, k=-3, l.oczek = 8
+    mapa w=4, k=-5, l.oczek = 8
+    mapa w=11, k=0, l.oczek = 8
+    mapa w=12, k=0, l.oczek = 8
+    mapa w=13, k=0, l.oczek = 8
+    mapa w=-3, k=-1, l.oczek = 8
+    mapa w=3, k=1, l.oczek = 8
+    mapa w=1, k=-5, l.oczek = 8
+    mapa w=14, k=0, l.oczek = 8
+    mapa w=15, k=0, l.oczek = 8
+    mapa w=-2, k=-2, l.oczek = 8
+    mapa w=16, k=0, l.oczek = 8
+    mapa w=4, k=1, l.oczek = 8
+    mapa w=5, k=-1, l.oczek = 8
+    mapa w=29, k=-13, l.oczek = 8
+    mapa w=5, k=-4, l.oczek = 8
+    mapa w=29, k=-16, l.oczek = 8
+    mapa w=4, k=-2, l.oczek = 8
+    mapa w=-1, k=-4, l.oczek = 8
+    mapa w=1, k=-6, l.oczek = 8
+    mapa w=6, k=-1, l.oczek = 8
+    mapa w=3, k=-5, l.oczek = 8
+    mapa w=5, k=-2, l.oczek = 8
+    mapa w=2, k=-5, l.oczek = 8
+    mapa w=29, k=-6, l.oczek = 8
+    mapa w=-3, k=-2, l.oczek = 8
+    mapa w=5, k=-6, l.oczek = 8
+    mapa w=28, k=-10, l.oczek = 8
+    mapa w=1, k=-7, l.oczek = 8
+    mapa w=-1, k=-5, l.oczek = 8
+    mapa w=6, k=-5, l.oczek = 8
+    mapa w=6, k=-7, l.oczek = 8
+    mapa w=5, k=-3, l.oczek = 8
+    mapa w=2, k=-6, l.oczek = 8
+    mapa w=7, k=-6, l.oczek = 8
+    mapa w=17, k=-5, l.oczek = 8
+    mapa w=4, k=-6, l.oczek = 8
+    mapa w=7, k=-1, l.oczek = 8
+    mapa w=-1, k=-6, l.oczek = 8
+    mapa w=16, k=-8, l.oczek = 8
+    mapa w=1, k=-8, l.oczek = 8
+    mapa w=8, k=-1, l.oczek = 8
+    mapa w=-2, k=-4, l.oczek = 8
+    mapa w=3, k=-6, l.oczek = 8
+    mapa w=6, k=-4, l.oczek = 8
+    mapa w=21, k=-7, l.oczek = 8
+    mapa w=7, k=-8, l.oczek = 8
+    mapa w=8, k=-7, l.oczek = 8
+    mapa w=6, k=-2, l.oczek = 8
+    mapa w=23, k=-12, l.oczek = 8
+    mapa w=5, k=-7, l.oczek = 8
+    mapa w=23, k=-11, l.oczek = 8
+    mapa w=2, k=-7, l.oczek = 8
+    mapa w=23, k=-5, l.oczek = 8
+    mapa w=6, k=-3, l.oczek = 8
+    mapa w=7, k=-2, l.oczek = 8
+    mapa w=9, k=-1, l.oczek = 8
+    mapa w=4, k=-7, l.oczek = 8
+    mapa w=-2, k=-5, l.oczek = 8
+    mapa w=3, k=-7, l.oczek = 8
+    mapa w=7, k=-5, l.oczek = 8
+    mapa w=7, k=-4, l.oczek = 8
+    mapa w=10, k=-1, l.oczek = 8
+    mapa w=7, k=-3, l.oczek = 8
+    mapa w=9, k=1, l.oczek = 8
+    mapa w=24, k=-2, l.oczek = 8
+    mapa w=29, k=-15, l.oczek = 8
+    mapa w=2, k=-8, l.oczek = 8
+    mapa w=29, k=-14, l.oczek = 8
+    mapa w=6, k=-8, l.oczek = 8
+    mapa w=25, k=-4, l.oczek = 8
+    mapa w=-2, k=-6, l.oczek = 8
+    mapa w=10, k=1, l.oczek = 8
+    mapa w=11, k=-1, l.oczek = 8
+    mapa w=28, k=-7, l.oczek = 8
+    mapa w=24, k=-8, l.oczek = 8
+    mapa w=8, k=-2, l.oczek = 8
+    mapa w=8, k=-6, l.oczek = 8
+    mapa w=3, k=-8, l.oczek = 8
+    mapa w=8, k=-3, l.oczek = 8
+    mapa w=5, k=-8, l.oczek = 8
+    mapa w=8, k=-5, l.oczek = 8
+    mapa w=27, k=-8, l.oczek = 8
+    mapa w=9, k=-2, l.oczek = 8
+    mapa w=26, k=-6, l.oczek = 8
+    mapa w=4, k=-8, l.oczek = 8
+    mapa w=19, k=-4, l.oczek = 8
+    mapa w=21, k=-3, l.oczek = 8
+    mapa w=25, k=-2, l.oczek = 8
+    mapa w=22, k=-6, l.oczek = 8
+    mapa w=12, k=-1, l.oczek = 8
+    mapa w=8, k=-4, l.oczek = 8
+    mapa w=11, k=1, l.oczek = 8
+    mapa w=17, k=-6, l.oczek = 8
+    mapa w=12, k=1, l.oczek = 8
+    mapa w=13, k=-1, l.oczek = 8
+    mapa w=17, k=-11, l.oczek = 8
+    mapa w=25, k=-7, l.oczek = 8
+    mapa w=18, k=-5, l.oczek = 8
+    mapa w=10, k=-2, l.oczek = 8
+    mapa w=9, k=-3, l.oczek = 8
+    mapa w=31, k=-9, l.oczek = 8
+    mapa w=9, k=-6, l.oczek = 8
+    mapa w=9, k=-5, l.oczek = 8
+    mapa w=26, k=-10, l.oczek = 8
+    mapa w=26, k=-16, l.oczek = 8
+    mapa w=14, k=-1, l.oczek = 8
+    mapa w=13, k=1, l.oczek = 8
+    mapa w=9, k=-4, l.oczek = 8
+    mapa w=9, k=2, l.oczek = 8
+    mapa w=11, k=-9, l.oczek = 8
+    mapa w=21, k=-8, l.oczek = 8
+    mapa w=11, k=-2, l.oczek = 8
+    mapa w=28, k=-5, l.oczek = 8
+    mapa w=17, k=-7, l.oczek = 8
+    mapa w=17, k=-10, l.oczek = 8
+    mapa w=17, k=-9, l.oczek = 8
+    mapa w=28, k=-11, l.oczek = 8
+    mapa w=15, k=-1, l.oczek = 8
+    mapa w=10, k=-3, l.oczek = 8
+    mapa w=16, k=-1, l.oczek = 8
+    mapa w=29, k=-9, l.oczek = 8
+    mapa w=24, k=-9, l.oczek = 8
+    mapa w=10, k=-5, l.oczek = 8
+    mapa w=12, k=-10, l.oczek = 8
+    mapa w=17, k=-8, l.oczek = 8
+    mapa w=10, k=2, l.oczek = 8
+    mapa w=10, k=-4, l.oczek = 8
+    mapa w=12, k=-2, l.oczek = 8
+    mapa w=10, k=-6, l.oczek = 8
+    mapa w=11, k=-3, l.oczek = 8
+    mapa w=17, k=-1, l.oczek = 8
+    mapa w=11, k=-8, l.oczek = 8
+    mapa w=13, k=-2, l.oczek = 8
+    mapa w=26, k=-2, l.oczek = 8
+    mapa w=22, k=-3, l.oczek = 8
+    mapa w=26, k=-4, l.oczek = 8
+    mapa w=18, k=-6, l.oczek = 8
+    mapa w=18, k=-1, l.oczek = 8
+    mapa w=21, k=-9, l.oczek = 8
+    mapa w=21, k=-12, l.oczek = 8
+    mapa w=24, k=-5, l.oczek = 8
+    mapa w=30, k=-11, l.oczek = 8
+    mapa w=11, k=2, l.oczek = 8
+    mapa w=26, k=-15, l.oczek = 8
+    mapa w=20, k=-4, l.oczek = 8
+    mapa w=11, k=-7, l.oczek = 8
+    mapa w=30, k=-8, l.oczek = 8
+    mapa w=21, k=-11, l.oczek = 8
+    mapa w=26, k=-11, l.oczek = 8
+    mapa w=11, k=-4, l.oczek = 8
+    mapa w=19, k=-5, l.oczek = 8
+    mapa w=12, k=-9, l.oczek = 8
+    mapa w=11, k=-6, l.oczek = 8
+    mapa w=11, k=-5, l.oczek = 8
+    mapa w=12, k=-3, l.oczek = 8
+    mapa w=22, k=-7, l.oczek = 8
+    mapa w=21, k=-10, l.oczek = 8
+    mapa w=9, k=3, l.oczek = 8
+    mapa w=12, k=2, l.oczek = 8
+    mapa w=14, k=-2, l.oczek = 8
+    mapa w=26, k=-12, l.oczek = 8
+    mapa w=27, k=-9, l.oczek = 8
+    mapa w=26, k=-14, l.oczek = 8
+    mapa w=23, k=-6, l.oczek = 8
+    mapa w=27, k=-2, l.oczek = 8
+    mapa w=24, k=-10, l.oczek = 8
+    mapa w=18, k=-7, l.oczek = 8
+    mapa w=24, k=-14, l.oczek = 8
+    mapa w=13, k=-10, l.oczek = 8
+    mapa w=10, k=3, l.oczek = 8
+    mapa w=13, k=2, l.oczek = 8
+    mapa w=13, k=-3, l.oczek = 8
+    mapa w=15, k=-2, l.oczek = 8
+    mapa w=23, k=-3, l.oczek = 8
+    mapa w=12, k=-8, l.oczek = 8
+    mapa w=28, k=-16, l.oczek = 8
+    mapa w=26, k=-13, l.oczek = 8
+    mapa w=12, k=-4, l.oczek = 8
+    mapa w=28, k=-12, l.oczek = 8
+    mapa w=21, k=-4, l.oczek = 8
+    mapa w=27, k=-6, l.oczek = 8
+    mapa w=25, k=-8, l.oczek = 8
+    mapa w=12, k=-5, l.oczek = 8
+    mapa w=12, k=-7, l.oczek = 8
+    mapa w=21, k=-1, l.oczek = 8
+    mapa w=24, k=-11, l.oczek = 8
+    mapa w=24, k=-13, l.oczek = 8
+    mapa w=12, k=-6, l.oczek = 8
+    mapa w=18, k=-9, l.oczek = 8
+    mapa w=29, k=-7, l.oczek = 8
+    mapa w=29, k=-5, l.oczek = 8
+    mapa w=18, k=-8, l.oczek = 8
+    mapa w=9, k=4, l.oczek = 8
+    mapa w=13, k=-9, l.oczek = 8
+    mapa w=16, k=-2, l.oczek = 8
+    mapa w=18, k=-10, l.oczek = 8
+    mapa w=30, k=-12, l.oczek = 8
+    mapa w=14, k=-11, l.oczek = 8
+    mapa w=22, k=-1, l.oczek = 8
+    mapa w=11, k=3, l.oczek = 8
+    mapa w=28, k=-14, l.oczek = 8
+    mapa w=13, k=-4, l.oczek = 8
+    mapa w=26, k=-7, l.oczek = 8
+    mapa w=24, k=-12, l.oczek = 8
+    mapa w=27, k=-4, l.oczek = 8
+    mapa w=14, k=-3, l.oczek = 8
+    mapa w=22, k=-8, l.oczek = 8
+    mapa w=23, k=-1, l.oczek = 8
+    mapa w=17, k=-2, l.oczek = 8
+    mapa w=19, k=-6, l.oczek = 8
+    mapa w=28, k=-13, l.oczek = 8
+    mapa w=28, k=-15, l.oczek = 8
+    mapa w=31, k=-10, l.oczek = 8
+    mapa w=28, k=-8, l.oczek = 8
+    mapa w=13, k=-5, l.oczek = 8
+    mapa w=25, k=-5, l.oczek = 8
+    mapa w=13, k=-8, l.oczek = 8
+    mapa w=24, k=-3, l.oczek = 8
+    mapa w=29, k=-10, l.oczek = 8
+    mapa w=20, k=-5, l.oczek = 8
+    mapa w=15, k=-3, l.oczek = 8
+    mapa w=12, k=3, l.oczek = 8
+    mapa w=13, k=-7, l.oczek = 8
+    mapa w=13, k=-6, l.oczek = 8
+    mapa w=24, k=-1, l.oczek = 8
+    mapa w=22, k=-9, l.oczek = 8
+    mapa w=23, k=-7, l.oczek = 8
+    mapa w=14, k=-10, l.oczek = 8
+    mapa w=14, k=-4, l.oczek = 8
+    mapa w=10, k=4, l.oczek = 8
+    mapa w=22, k=-4, l.oczek = 8
+    mapa w=25, k=-9, l.oczek = 8
+    mapa w=27, k=-10, l.oczek = 8
+    mapa w=18, k=-2, l.oczek = 8
+    mapa w=16, k=-3, l.oczek = 8
+    mapa w=19, k=-7, l.oczek = 8
+    mapa w=24, k=-6, l.oczek = 8
+    mapa w=14, k=-9, l.oczek = 8
+    mapa w=14, k=-5, l.oczek = 8
+    mapa w=30, k=-13, l.oczek = 8
+    mapa w=22, k=-12, l.oczek = 8
+    mapa w=22, k=-10, l.oczek = 8
+    mapa w=25, k=-3, l.oczek = 8
+    mapa w=15, k=-11, l.oczek = 8
+    mapa w=11, k=4, l.oczek = 8
+    mapa w=22, k=-11, l.oczek = 8
+    mapa w=15, k=-4, l.oczek = 8
+    mapa w=20, k=-6, l.oczek = 8
+    mapa w=21, k=-5, l.oczek = 8
+    mapa w=30, k=-9, l.oczek = 8
+    mapa w=14, k=-8, l.oczek = 8
+    mapa w=14, k=-6, l.oczek = 8
+    mapa w=28, k=-6, l.oczek = 8
+    mapa w=19, k=-8, l.oczek = 8
+    mapa w=14, k=-7, l.oczek = 8
+    mapa w=19, k=-10, l.oczek = 8
+    mapa w=19, k=-9, l.oczek = 8
+    mapa w=31, k=-8, l.oczek = 8
+    mapa w=28, k=-4, l.oczek = 8
+    mapa w=23, k=-4, l.oczek = 8
+    mapa w=17, k=-3, l.oczek = 8
+    mapa w=29, k=-11, l.oczek = 8
+    mapa w=27, k=-11, l.oczek = 8
+    mapa w=30, k=-14, l.oczek = 8
+    mapa w=26, k=-5, l.oczek = 8
+    mapa w=27, k=-16, l.oczek = 8
+    mapa w=15, k=-10, l.oczek = 8
+    mapa w=15, k=-5, l.oczek = 8
+    mapa w=25, k=-10, l.oczek = 8
+    mapa w=28, k=-9, l.oczek = 8
+    mapa w=26, k=-8, l.oczek = 8
+    mapa w=12, k=4, l.oczek = 8
+    mapa w=23, k=-8, l.oczek = 8
+    mapa w=21, k=-2, l.oczek = 8
+    mapa w=16, k=-4, l.oczek = 8
+    mapa w=27, k=-7, l.oczek = 8
+    mapa w=15, k=-6, l.oczek = 8
+    mapa w=26, k=-3, l.oczek = 8
+    mapa w=15, k=-9, l.oczek = 8
+    mapa w=18, k=-3, l.oczek = 8
+    mapa w=15, k=-8, l.oczek = 8
+    mapa w=15, k=-7, l.oczek = 8
+    mapa w=31, k=-11, l.oczek = 8
+    mapa w=20, k=-7, l.oczek = 8
+    mapa w=25, k=-11, l.oczek = 8
+    mapa w=25, k=-14, l.oczek = 8
+    mapa w=30, k=-7, l.oczek = 8
+    mapa w=22, k=-5, l.oczek = 8
+    mapa w=16, k=-5, l.oczek = 8
+    mapa w=17, k=-4, l.oczek = 8
+    mapa w=24, k=-7, l.oczek = 8
+    mapa w=22, k=-2, l.oczek = 8
+    mapa w=16, k=-11, l.oczek = 8
+    mapa w=25, k=-6, l.oczek = 8
+    mapa w=27, k=-15, l.oczek = 8
+    mapa w=29, k=-8, l.oczek = 8
+    mapa w=23, k=-14, l.oczek = 8
+    mapa w=29, k=-4, l.oczek = 8
+    mapa w=27, k=-12, l.oczek = 8
+    mapa w=23, k=-9, l.oczek = 8
+    mapa w=19, k=-3, l.oczek = 8
+    mapa w=27, k=-14, l.oczek = 8
+    mapa w=27, k=-13, l.oczek = 8
+    mapa w=21, k=-6, l.oczek = 8
+    mapa w=27, k=-3, l.oczek = 8
+    mapa w=25, k=-13, l.oczek = 8
+    mapa w=25, k=-12, l.oczek = 8
+    mapa w=20, k=-8, l.oczek = 8
+    mapa w=29, k=-12, l.oczek = 8
+    mapa w=24, k=-4, l.oczek = 8
+    mapa w=27, k=-5, l.oczek = 8
+    mapa w=23, k=-2, l.oczek = 8
+    mapa w=23, k=-10, l.oczek = 8
+    mapa w=26, k=-9, l.oczek = 8
+    mapa w=16, k=-6, l.oczek = 8
+    mapa w=16, k=-10, l.oczek = 8
+    mapa w=23, k=-13, l.oczek = 8
+    mapa w=30, k=-10, l.oczek = 8
+    mapa w=18, k=-4, l.oczek = 8
+    mapa w=20, k=-10, l.oczek = 8
+    mapa w=16, k=-7, l.oczek = 8
+Znaleziono w pliku teren2.map przedmioty w liczbie 224
+  przedm.0, type = 1, value = 10.000000
+wstawiam przedmiot 23183400: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 20, k = -3
+  przedm.1, type = 1, value = 10.000000
+wstawiam przedmiot 23183496: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 19, k = -3
+  przedm.2, type = 1, value = 10.000000
+wstawiam przedmiot 23183592: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 19, k = -3
+  przedm.3, type = 1, value = 10.000000
+wstawiam przedmiot 23183688: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 19, k = -3
+  przedm.4, type = 1, value = 10.000000
+wstawiam przedmiot 23183784: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 19, k = -3
+  przedm.5, type = 1, value = 10.000000
+wstawiam przedmiot 23183880: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 20, k = -2
+  przedm.6, type = 1, value = 10.000000
+wstawiam przedmiot 23183976: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 20, k = -2
+  przedm.7, type = 1, value = 10.000000
+wstawiam przedmiot 23184072: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 20, k = -2
+  przedm.8, type = 1, value = 10.000000
+wstawiam przedmiot 23184168: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 20, k = -2
+  przedm.9, type = 1, value = 10.000000
+wstawiam przedmiot 23184264: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 20, k = -2
+  przedm.10, type = 1, value = 10.000000
+wstawiam przedmiot 23184360: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 20, k = -2
+  przedm.11, type = 1, value = 10.000000
+wstawiam przedmiot 23184456: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 20, k = -2
+  przedm.12, type = 1, value = 10.000000
+wstawiam przedmiot 23184552: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 20, k = -2
+  przedm.13, type = 1, value = 10.000000
+wstawiam przedmiot 23184648: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 20, k = -3
+  przedm.14, type = 1, value = 10.000000
+wstawiam przedmiot 23184744: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 18, k = -2
+  przedm.15, type = 1, value = 10.000000
+wstawiam przedmiot 23184840: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 19, k = -2
+  przedm.16, type = 1, value = 10.000000
+wstawiam przedmiot 23184936: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 19, k = -2
+  przedm.17, type = 1, value = 10.000000
+wstawiam przedmiot 23185032: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 19, k = -2
+  przedm.18, type = 1, value = 10.000000
+wstawiam przedmiot 23185128: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 20, k = -3
+  przedm.19, type = 1, value = 10.000000
+wstawiam przedmiot 23185224: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 21, k = -4
+  przedm.20, type = 1, value = 10.000000
+wstawiam przedmiot 23185320: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 20, k = -5
+  przedm.21, type = 1, value = 10.000000
+wstawiam przedmiot 23185416: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 20, k = -4
+  przedm.22, type = 1, value = 10.000000
+wstawiam przedmiot 23185512: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 20, k = -4
+  przedm.23, type = 1, value = 10.000000
+wstawiam przedmiot 23185608: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 19, k = -4
+  przedm.24, type = 1, value = 10.000000
+wstawiam przedmiot 23185704: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 19, k = -3
+  przedm.25, type = 1, value = 10.000000
+wstawiam przedmiot 23185800: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 19, k = -3
+  przedm.26, type = 1, value = 10.000000
+wstawiam przedmiot 23185896: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 19, k = -3
+  przedm.27, type = 1, value = 10.000000
+wstawiam przedmiot 23185992: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 19, k = -2
+  przedm.28, type = 1, value = 10.000000
+wstawiam przedmiot 23186088: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 19, k = -2
+  przedm.29, type = 1, value = 10.000000
+wstawiam przedmiot 23186184: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 20, k = -2
+  przedm.30, type = 1, value = 10.000000
+wstawiam przedmiot 23186280: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 20, k = -3
+  przedm.31, type = 1, value = 10.000000
+wstawiam przedmiot 23186376: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 20, k = -3
+  przedm.32, type = 1, value = 10.000000
+wstawiam przedmiot 23186472: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 20, k = -3
+  przedm.33, type = 1, value = 10.000000
+wstawiam przedmiot 23186568: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 19, k = -2
+  przedm.34, type = 1, value = 10.000000
+wstawiam przedmiot 23186664: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 20, k = -2
+  przedm.35, type = 1, value = 10.000000
+wstawiam przedmiot 23186760: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 19, k = -2
+  przedm.36, type = 1, value = 10.000000
+wstawiam przedmiot 23186856: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 19, k = -3
+  przedm.37, type = 1, value = 10.000000
+wstawiam przedmiot 23186952: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 0, k = 0
+  przedm.38, type = 1, value = 10.000000
+wstawiam przedmiot 23187048: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 0, k = 0
+  przedm.39, type = 2, value = 22.830770
+wstawiam przedmiot 23187144: drzewo o wartosci 22.830770 i srednicy 1.220769 w sektor w = -1, k = 1
+  przedm.40, type = 1, value = 10.000000
+wstawiam przedmiot 23187240: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 0, k = 1
+  przedm.41, type = 1, value = 10.000000
+wstawiam przedmiot 23187336: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 0, k = 1
+  przedm.42, type = 1, value = 10.000000
+wstawiam przedmiot 23187432: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 0, k = 0
+  przedm.43, type = 1, value = 10.000000
+wstawiam przedmiot 23187528: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 0, k = 0
+  przedm.44, type = 1, value = 10.000000
+wstawiam przedmiot 23187624: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 0, k = 1
+  przedm.45, type = 1, value = 10.000000
+wstawiam przedmiot 23187720: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 0, k = 1
+  przedm.46, type = 1, value = 10.000000
+wstawiam przedmiot 23187816: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 0, k = 1
+  przedm.47, type = 1, value = 10.000000
+wstawiam przedmiot 23187912: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 0, k = 1
+  przedm.48, type = 1, value = 10.000000
+wstawiam przedmiot 23188008: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 0, k = 1
+  przedm.49, type = 1, value = 10.000000
+wstawiam przedmiot 23188104: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 0, k = 0
+  przedm.50, type = 1, value = 10.000000
+wstawiam przedmiot 23188200: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 0, k = 1
+  przedm.51, type = 1, value = 10.000000
+wstawiam przedmiot 23188296: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 0, k = 1
+  przedm.52, type = 1, value = 10.000000
+wstawiam przedmiot 23188392: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 0, k = 0
+  przedm.53, type = 1, value = 10.000000
+wstawiam przedmiot 23188488: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 0, k = 0
+  przedm.54, type = 1, value = 10.000000
+wstawiam przedmiot 23188584: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 0, k = 0
+  przedm.55, type = 1, value = 10.000000
+wstawiam przedmiot 23188680: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 0, k = 0
+  przedm.56, type = 1, value = 10.000000
+wstawiam przedmiot 23188776: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 0, k = 0
+  przedm.57, type = 1, value = 10.000000
+wstawiam przedmiot 23188872: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 0, k = 0
+  przedm.58, type = 1, value = 10.000000
+wstawiam przedmiot 23188968: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 0, k = 0
+  przedm.59, type = 1, value = 10.000000
+wstawiam przedmiot 23189064: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 0, k = 0
+  przedm.60, type = 1, value = 10.000000
+wstawiam przedmiot 23189160: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 0, k = 0
+  przedm.61, type = 1, value = 10.000000
+wstawiam przedmiot 23189256: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 0, k = 0
+  przedm.62, type = 1, value = 10.000000
+wstawiam przedmiot 23189352: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 0, k = 0
+  przedm.63, type = 1, value = 10.000000
+wstawiam przedmiot 23189448: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 0, k = 0
+  przedm.64, type = 1, value = 10.000000
+wstawiam przedmiot 23189544: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 0, k = 0
+  przedm.65, type = 1, value = 10.000000
+wstawiam przedmiot 23189640: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 0, k = 0
+  przedm.66, type = 1, value = 10.000000
+wstawiam przedmiot 23189736: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = -1, k = 1
+  przedm.67, type = 1, value = 10.000000
+wstawiam przedmiot 23189832: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = -1, k = 1
+  przedm.68, type = 1, value = 10.000000
+wstawiam przedmiot 23189928: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = -1, k = 1
+  przedm.69, type = 1, value = 10.000000
+wstawiam przedmiot 23190024: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = -1, k = 1
+  przedm.70, type = 1, value = 10.000000
+wstawiam przedmiot 23190120: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = -1, k = 1
+  przedm.71, type = 1, value = 10.000000
+wstawiam przedmiot 23190216: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = -1, k = 1
+  przedm.72, type = 1, value = 10.000000
+wstawiam przedmiot 23190312: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = -1, k = 1
+  przedm.73, type = 1, value = 10.000000
+wstawiam przedmiot 23190408: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = -1, k = 1
+  przedm.74, type = 1, value = 10.000000
+wstawiam przedmiot 23190504: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = -1, k = 1
+  przedm.75, type = 1, value = 10.000000
+wstawiam przedmiot 23190600: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = -1, k = 1
+  przedm.76, type = 1, value = 10.000000
+wstawiam przedmiot 23190696: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = -1, k = 1
+  przedm.77, type = 1, value = 10.000000
+wstawiam przedmiot 23190792: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = -1, k = 1
+  przedm.78, type = 2, value = 20.000000
+wstawiam przedmiot 23190888: drzewo o wartosci 20.000000 i srednicy 2.000000 w sektor w = 0, k = 0
+  przedm.79, type = 2, value = 20.000000
+wstawiam przedmiot 23190984: drzewo o wartosci 20.000000 i srednicy 2.000000 w sektor w = 0, k = 0
+  przedm.80, type = 2, value = 20.000000
+wstawiam przedmiot 23191080: drzewo o wartosci 20.000000 i srednicy 2.000000 w sektor w = 0, k = 0
+  przedm.81, type = 2, value = 20.000000
+wstawiam przedmiot 23191176: drzewo o wartosci 20.000000 i srednicy 2.000000 w sektor w = 0, k = 1
+  przedm.82, type = 2, value = 20.000000
+wstawiam przedmiot 23191272: drzewo o wartosci 20.000000 i srednicy 2.000000 w sektor w = 0, k = 1
+  przedm.83, type = 2, value = 20.000000
+wstawiam przedmiot 23191368: drzewo o wartosci 20.000000 i srednicy 2.000000 w sektor w = 0, k = 1
+  przedm.84, type = 2, value = 20.000000
+wstawiam przedmiot 23191464: drzewo o wartosci 20.000000 i srednicy 2.000000 w sektor w = 0, k = 1
+  przedm.85, type = 2, value = 20.000000
+wstawiam przedmiot 23191560: drzewo o wartosci 20.000000 i srednicy 2.000000 w sektor w = 0, k = 1
+  przedm.86, type = 2, value = 20.000000
+wstawiam przedmiot 23191656: drzewo o wartosci 20.000000 i srednicy 2.000000 w sektor w = 0, k = 1
+  przedm.87, type = 2, value = 20.000000
+wstawiam przedmiot 23191752: drzewo o wartosci 20.000000 i srednicy 2.000000 w sektor w = 0, k = 1
+  przedm.88, type = 2, value = 20.000000
+wstawiam przedmiot 23191848: drzewo o wartosci 20.000000 i srednicy 2.000000 w sektor w = 0, k = 1
+  przedm.89, type = 2, value = 20.000000
+wstawiam przedmiot 23191944: drzewo o wartosci 20.000000 i srednicy 2.000000 w sektor w = 0, k = 1
+  przedm.90, type = 2, value = 20.000000
+wstawiam przedmiot 23192040: drzewo o wartosci 20.000000 i srednicy 2.000000 w sektor w = 0, k = 1
+  przedm.91, type = 2, value = 20.000000
+wstawiam przedmiot 23192136: drzewo o wartosci 20.000000 i srednicy 2.000000 w sektor w = 0, k = 0
+  przedm.92, type = 2, value = 20.000000
+wstawiam przedmiot 23192232: drzewo o wartosci 20.000000 i srednicy 2.000000 w sektor w = 0, k = 0
+  przedm.93, type = 2, value = 20.000000
+wstawiam przedmiot 23192328: drzewo o wartosci 20.000000 i srednicy 2.000000 w sektor w = 0, k = 0
+  przedm.94, type = 2, value = 20.000000
+wstawiam przedmiot 23192424: drzewo o wartosci 20.000000 i srednicy 2.000000 w sektor w = 0, k = 0
+  przedm.95, type = 2, value = 20.000000
+wstawiam przedmiot 23192520: drzewo o wartosci 20.000000 i srednicy 2.000000 w sektor w = 0, k = 0
+  przedm.96, type = 2, value = 20.000000
+wstawiam przedmiot 23192616: drzewo o wartosci 20.000000 i srednicy 2.000000 w sektor w = 0, k = 0
+  przedm.97, type = 2, value = 20.000000
+wstawiam przedmiot 23192712: drzewo o wartosci 20.000000 i srednicy 2.000000 w sektor w = 0, k = 0
+  przedm.98, type = 2, value = 20.000000
+wstawiam przedmiot 23192808: drzewo o wartosci 20.000000 i srednicy 2.000000 w sektor w = 0, k = 0
+  przedm.99, type = 2, value = 20.000000
+wstawiam przedmiot 23192904: drzewo o wartosci 20.000000 i srednicy 2.000000 w sektor w = 0, k = 0
+  przedm.100, type = 2, value = 20.000000
+wstawiam przedmiot 23193000: drzewo o wartosci 20.000000 i srednicy 2.000000 w sektor w = 0, k = 0
+  przedm.101, type = 2, value = 20.000000
+wstawiam przedmiot 23193096: drzewo o wartosci 20.000000 i srednicy 2.000000 w sektor w = 0, k = 0
+  przedm.102, type = 2, value = 20.000000
+wstawiam przedmiot 23193192: drzewo o wartosci 20.000000 i srednicy 2.000000 w sektor w = 0, k = 0
+  przedm.103, type = 2, value = 20.000000
+wstawiam przedmiot 23193288: drzewo o wartosci 20.000000 i srednicy 2.000000 w sektor w = 0, k = 0
+  przedm.104, type = 2, value = 20.000000
+wstawiam przedmiot 23193384: drzewo o wartosci 20.000000 i srednicy 2.000000 w sektor w = 0, k = 0
+  przedm.105, type = 2, value = 20.000000
+wstawiam przedmiot 23193480: drzewo o wartosci 20.000000 i srednicy 2.000000 w sektor w = 0, k = 0
+  przedm.106, type = 2, value = 20.000000
+wstawiam przedmiot 23193576: drzewo o wartosci 20.000000 i srednicy 2.000000 w sektor w = 0, k = 0
+  przedm.107, type = 2, value = 20.000000
+wstawiam przedmiot 23193672: drzewo o wartosci 20.000000 i srednicy 2.000000 w sektor w = 0, k = 0
+  przedm.108, type = 2, value = 20.000000
+wstawiam przedmiot 23193768: drzewo o wartosci 20.000000 i srednicy 2.000000 w sektor w = 0, k = 0
+  przedm.109, type = 2, value = 20.000000
+wstawiam przedmiot 23193864: drzewo o wartosci 20.000000 i srednicy 2.000000 w sektor w = 0, k = 0
+  przedm.110, type = 2, value = 20.000000
+wstawiam przedmiot 23193960: drzewo o wartosci 20.000000 i srednicy 2.000000 w sektor w = 0, k = 0
+  przedm.111, type = 1, value = 10.000000
+wstawiam przedmiot 23194056: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 0, k = 0
+  przedm.112, type = 0, value = 100.000000
+wstawiam przedmiot 23194152: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 0, k = 0
+  przedm.113, type = 0, value = 100.000000
+wstawiam przedmiot 23194248: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 0, k = 0
+  przedm.114, type = 0, value = 100.000000
+wstawiam przedmiot 23194344: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 0, k = 0
+  przedm.115, type = 0, value = 100.000000
+wstawiam przedmiot 23194440: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 0, k = 0
+  przedm.116, type = 0, value = 100.000000
+wstawiam przedmiot 23194536: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 0, k = 0
+  przedm.117, type = 0, value = 100.000000
+wstawiam przedmiot 23194632: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 0, k = 0
+  przedm.118, type = 0, value = 100.000000
+wstawiam przedmiot 23194728: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = -1, k = 0
+  przedm.119, type = 0, value = 100.000000
+wstawiam przedmiot 23194824: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 0, k = 0
+  przedm.120, type = 0, value = 100.000000
+wstawiam przedmiot 23194920: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 0, k = 0
+  przedm.121, type = 0, value = 100.000000
+wstawiam przedmiot 23195016: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 0, k = 0
+  przedm.122, type = 0, value = 100.000000
+wstawiam przedmiot 23195112: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 0, k = 0
+  przedm.123, type = 0, value = 100.000000
+wstawiam przedmiot 23195208: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 0, k = 0
+  przedm.124, type = 0, value = 100.000000
+wstawiam przedmiot 23195304: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 0, k = 0
+  przedm.125, type = 0, value = 100.000000
+wstawiam przedmiot 23195400: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 0, k = 0
+  przedm.126, type = 0, value = 100.000000
+wstawiam przedmiot 23195496: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 0, k = 0
+  przedm.127, type = 0, value = 100.000000
+wstawiam przedmiot 23195592: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 0, k = 0
+  przedm.128, type = 0, value = 100.000000
+wstawiam przedmiot 23195688: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 0, k = 0
+  przedm.129, type = 0, value = 100.000000
+wstawiam przedmiot 23195784: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 0, k = 0
+  przedm.130, type = 0, value = 100.000000
+wstawiam przedmiot 23195880: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 0, k = 0
+  przedm.131, type = 0, value = 100.000000
+wstawiam przedmiot 23195976: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 0, k = 0
+  przedm.132, type = 0, value = 100.000000
+wstawiam przedmiot 23196072: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 1, k = -1
+  przedm.133, type = 0, value = 100.000000
+wstawiam przedmiot 23196168: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 1, k = -1
+  przedm.134, type = 0, value = 100.000000
+wstawiam przedmiot 23196264: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 1, k = -1
+  przedm.135, type = 0, value = 100.000000
+wstawiam przedmiot 23196360: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 1, k = -1
+  przedm.136, type = 0, value = 100.000000
+wstawiam przedmiot 23196456: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 1, k = -1
+  przedm.137, type = 0, value = 100.000000
+wstawiam przedmiot 23196552: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 1, k = -1
+  przedm.138, type = 0, value = 100.000000
+wstawiam przedmiot 23196648: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 1, k = -1
+  przedm.139, type = 0, value = 100.000000
+wstawiam przedmiot 23196744: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 1, k = -1
+  przedm.140, type = 0, value = 100.000000
+wstawiam przedmiot 23196840: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 1, k = -1
+  przedm.141, type = 0, value = 100.000000
+wstawiam przedmiot 23196936: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 1, k = -1
+  przedm.142, type = 0, value = 100.000000
+wstawiam przedmiot 23197032: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 1, k = -1
+  przedm.143, type = 0, value = 100.000000
+wstawiam przedmiot 23197128: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 1, k = -1
+  przedm.144, type = 0, value = 100.000000
+wstawiam przedmiot 23197224: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 1, k = -1
+  przedm.145, type = 0, value = 100.000000
+wstawiam przedmiot 23197320: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 1, k = -1
+  przedm.146, type = 0, value = 100.000000
+wstawiam przedmiot 23197416: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 1, k = -1
+  przedm.147, type = 0, value = 100.000000
+wstawiam przedmiot 23197512: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 1, k = -1
+  przedm.148, type = 0, value = 100.000000
+wstawiam przedmiot 23197608: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 1, k = -1
+  przedm.149, type = 0, value = 100.000000
+wstawiam przedmiot 23197704: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 1, k = -1
+  przedm.150, type = 0, value = 100.000000
+wstawiam przedmiot 23197800: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 1, k = -1
+  przedm.151, type = 0, value = 100.000000
+wstawiam przedmiot 23197896: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 1, k = -1
+  przedm.152, type = 4, value = 0.000000
+wstawiam przedmiot 23197992: krawedz o wartosci 0.000000 i srednicy 0.000000 w sektor w = 1, k = -1
+  przedm.153, type = 1, value = 10.000000
+wstawiam przedmiot 23198088: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 1, k = -1
+  przedm.154, type = 1, value = 10.000000
+wstawiam przedmiot 23198184: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 1, k = -1
+  przedm.155, type = 1, value = 10.000000
+wstawiam przedmiot 23198280: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 1, k = -1
+  przedm.156, type = 1, value = 10.000000
+wstawiam przedmiot 23198376: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 1, k = -1
+  przedm.157, type = 1, value = 10.000000
+wstawiam przedmiot 23198472: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 1, k = -1
+  przedm.158, type = 1, value = 10.000000
+wstawiam przedmiot 23198568: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 1, k = -1
+  przedm.159, type = 1, value = 10.000000
+wstawiam przedmiot 23198664: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 1, k = -1
+  przedm.160, type = 1, value = 10.000000
+wstawiam przedmiot 23198760: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 1, k = -1
+  przedm.161, type = 1, value = 10.000000
+wstawiam przedmiot 23198856: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 2, k = -4
+  przedm.162, type = 1, value = 10.000000
+wstawiam przedmiot 23198952: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 2, k = -4
+  przedm.163, type = 1, value = 10.000000
+wstawiam przedmiot 23199048: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 2, k = -4
+  przedm.164, type = 1, value = 10.000000
+wstawiam przedmiot 23199144: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 2, k = -4
+  przedm.165, type = 1, value = 10.000000
+wstawiam przedmiot 23199240: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 2, k = -4
+  przedm.166, type = 1, value = 10.000000
+wstawiam przedmiot 23199336: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 2, k = -4
+  przedm.167, type = 1, value = 10.000000
+wstawiam przedmiot 23199432: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 2, k = -4
+  przedm.168, type = 1, value = 10.000000
+wstawiam przedmiot 23199528: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 2, k = -4
+  przedm.169, type = 1, value = 10.000000
+wstawiam przedmiot 23199624: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 2, k = -4
+  przedm.170, type = 1, value = 10.000000
+wstawiam przedmiot 23199720: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 2, k = -4
+  przedm.171, type = 1, value = 10.000000
+wstawiam przedmiot 23199816: beczka o wartosci 10.000000 i srednicy 0.525306 w sektor w = 2, k = -4
+  przedm.172, type = 0, value = 100.000000
+wstawiam przedmiot 23199912: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 4, k = -6
+  przedm.173, type = 0, value = 100.000000
+wstawiam przedmiot 23200008: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 4, k = -6
+  przedm.174, type = 0, value = 100.000000
+wstawiam przedmiot 23200104: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 4, k = -6
+  przedm.175, type = 0, value = 100.000000
+wstawiam przedmiot 23200200: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 4, k = -6
+  przedm.176, type = 0, value = 100.000000
+wstawiam przedmiot 23200296: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 4, k = -6
+  przedm.177, type = 0, value = 100.000000
+wstawiam przedmiot 23200392: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 4, k = -6
+  przedm.178, type = 0, value = 100.000000
+wstawiam przedmiot 23200488: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 4, k = -6
+  przedm.179, type = 0, value = 100.000000
+wstawiam przedmiot 23200584: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 4, k = -6
+  przedm.180, type = 0, value = 100.000000
+wstawiam przedmiot 23200680: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 4, k = -6
+  przedm.181, type = 0, value = 100.000000
+wstawiam przedmiot 23200776: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 4, k = -6
+  przedm.182, type = 0, value = 100.000000
+wstawiam przedmiot 23200872: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 4, k = -6
+  przedm.183, type = 0, value = 100.000000
+wstawiam przedmiot 23200968: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 5, k = -6
+  przedm.184, type = 0, value = 100.000000
+wstawiam przedmiot 23201064: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 5, k = -6
+  przedm.185, type = 0, value = 100.000000
+wstawiam przedmiot 23201160: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 5, k = -6
+  przedm.186, type = 0, value = 100.000000
+wstawiam przedmiot 23201256: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 5, k = -6
+  przedm.187, type = 0, value = 100.000000
+wstawiam przedmiot 23201352: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 5, k = -6
+  przedm.188, type = 0, value = 100.000000
+wstawiam przedmiot 23201448: moneta o wartosci 100.000000 i srednicy 1.000000 w sektor w = 5, k = -6
+  przedm.189, type = 2, value = 27.625233
+wstawiam przedmiot 23201544: drzewo o wartosci 27.625233 i srednicy 1.340631 w sektor w = 4, k = -6
+  przedm.190, type = 1, value = 2560.000000
+wstawiam przedmiot 23201640: beczka o wartosci 2560.000000 i srednicy 4.827341 w sektor w = 2, k = -3
+  przedm.191, type = 2, value = 33.426533
+wstawiam przedmiot 23201736: drzewo o wartosci 33.426533 i srednicy 1.485663 w sektor w = 6, k = -9
+  przedm.192, type = 2, value = 33.426533
+wstawiam przedmiot 23201832: drzewo o wartosci 33.426533 i srednicy 1.485663 w sektor w = 4, k = -6
+  przedm.193, type = 2, value = 33.426533
+wstawiam przedmiot 23201928: drzewo o wartosci 33.426533 i srednicy 1.485663 w sektor w = 4, k = -6
+  przedm.194, type = 2, value = 33.426533
+wstawiam przedmiot 23202024: drzewo o wartosci 33.426533 i srednicy 1.485663 w sektor w = 4, k = -6
+  przedm.195, type = 2, value = 33.426533
+wstawiam przedmiot 23202120: drzewo o wartosci 33.426533 i srednicy 1.485663 w sektor w = 4, k = -6
+  przedm.196, type = 2, value = 33.426533
+wstawiam przedmiot 23202216: drzewo o wartosci 33.426533 i srednicy 1.485663 w sektor w = 4, k = -6
+  przedm.197, type = 2, value = 33.426533
+wstawiam przedmiot 23202312: drzewo o wartosci 33.426533 i srednicy 1.485663 w sektor w = 4, k = -6
+  przedm.198, type = 2, value = 33.426533
+wstawiam przedmiot 23202408: drzewo o wartosci 33.426533 i srednicy 1.485663 w sektor w = 4, k = -6
+  przedm.199, type = 2, value = 33.426533
+wstawiam przedmiot 23202504: drzewo o wartosci 33.426533 i srednicy 1.485663 w sektor w = 4, k = -6
+  przedm.200, type = 2, value = 27.625233
+wstawiam przedmiot 23202600: drzewo o wartosci 27.625233 i srednicy 1.340631 w sektor w = 4, k = -6
+  przedm.201, type = 2, value = 27.625233
+wstawiam przedmiot 23202696: drzewo o wartosci 27.625233 i srednicy 1.340631 w sektor w = 4, k = -6
+  przedm.202, type = 2, value = 27.625233
+wstawiam przedmiot 23202792: drzewo o wartosci 27.625233 i srednicy 1.340631 w sektor w = 4, k = -6
+  przedm.203, type = 2, value = 27.625233
+wstawiam przedmiot 23202888: drzewo o wartosci 27.625233 i srednicy 1.340631 w sektor w = 4, k = -6
+  przedm.204, type = 2, value = 27.625233
+wstawiam przedmiot 23202984: drzewo o wartosci 27.625233 i srednicy 1.340631 w sektor w = 4, k = -6
+  przedm.205, type = 2, value = 27.625233
+wstawiam przedmiot 23203080: drzewo o wartosci 27.625233 i srednicy 1.340631 w sektor w = 4, k = -6
+  przedm.206, type = 2, value = 27.625233
+wstawiam przedmiot 23203176: drzewo o wartosci 27.625233 i srednicy 1.340631 w sektor w = 4, k = -5
+  przedm.207, type = 2, value = 27.625233
+wstawiam przedmiot 23203272: drzewo o wartosci 27.625233 i srednicy 1.340631 w sektor w = 4, k = -5
+  przedm.208, type = 2, value = 27.625233
+wstawiam przedmiot 23203368: drzewo o wartosci 27.625233 i srednicy 1.340631 w sektor w = 4, k = -6
+  przedm.209, type = 2, value = 27.625233
+wstawiam przedmiot 23203464: drzewo o wartosci 27.625233 i srednicy 1.340631 w sektor w = 4, k = -6
+  przedm.210, type = 2, value = 27.625233
+wstawiam przedmiot 23203560: drzewo o wartosci 27.625233 i srednicy 1.340631 w sektor w = 4, k = -6
+  przedm.211, type = 2, value = 27.625233
+wstawiam przedmiot 23203656: drzewo o wartosci 27.625233 i srednicy 1.340631 w sektor w = 4, k = -6
+  przedm.212, type = 2, value = 27.625233
+wstawiam przedmiot 23203752: drzewo o wartosci 27.625233 i srednicy 1.340631 w sektor w = 5, k = -6
+  przedm.213, type = 2, value = 27.625233
+wstawiam przedmiot 23203848: drzewo o wartosci 27.625233 i srednicy 1.340631 w sektor w = 5, k = -6
+  przedm.214, type = 2, value = 27.625233
+wstawiam przedmiot 23203944: drzewo o wartosci 27.625233 i srednicy 1.340631 w sektor w = -2, k = 0
+  przedm.215, type = 2, value = 27.625233
+wstawiam przedmiot 23204040: drzewo o wartosci 27.625233 i srednicy 1.340631 w sektor w = -2, k = 0
+  przedm.216, type = 2, value = 27.625233
+wstawiam przedmiot 23204136: drzewo o wartosci 27.625233 i srednicy 1.340631 w sektor w = -2, k = 0
+  przedm.217, type = 2, value = 22.830770
+wstawiam przedmiot 23204232: drzewo o wartosci 22.830770 i srednicy 1.220769 w sektor w = -1, k = 1
+  przedm.218, type = 2, value = 22.830770
+wstawiam przedmiot 23204328: drzewo o wartosci 22.830770 i srednicy 1.220769 w sektor w = -2, k = 0
+  przedm.219, type = 2, value = 22.830770
+wstawiam przedmiot 23204424: drzewo o wartosci 22.830770 i srednicy 1.220769 w sektor w = -2, k = 0
+  przedm.220, type = 2, value = 22.830770
+wstawiam przedmiot 23204520: drzewo o wartosci 22.830770 i srednicy 1.220769 w sektor w = -2, k = 0
+  przedm.221, type = 2, value = 22.830770
+wstawiam przedmiot 23204616: drzewo o wartosci 22.830770 i srednicy 1.220769 w sektor w = 0, k = 0
+  przedm.222, type = 2, value = 22.830770
+wstawiam przedmiot 23204712: drzewo o wartosci 22.830770 i srednicy 1.220769 w sektor w = 0, k = 0
+  przedm.223, type = 2, value = 22.830770
+wstawiam przedmiot 23204808: drzewo o wartosci 22.830770 i srednicy 1.220769 w sektor w = -1, k = 1
+Koniec wczytywania danych o terrainie.
+Nowy obiekt: iID = 285
+Nowy obiekt: iID = 41
+Koniec interakcji

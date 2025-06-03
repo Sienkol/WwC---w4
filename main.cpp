@@ -32,7 +32,24 @@ map<int, MovableObject*> network_vehicles;
 float fDt;                          // sredni czas pomiedzy dwoma kolejnymi cyklami symulacji i wyswietlania
 long VW_cycle_time, counter_of_simulations;     // zmienne pomocnicze potrzebne do obliczania fDt
 long start_time = clock();          // czas od poczatku dzialania aplikacji  
-long group_existing_time = clock();    // czas od pocz¹tku istnienia grupy roboczej (czas od uruchom. pierwszej aplikacji)      
+long group_existing_time = clock();    // czas od pocz¹tku istnienia grupy roboczej (czas od uruchom. pierwszej aplikacji)     
+
+// Nowe globalne zmienne dla stanu negocjacji
+enum NegotiationState {
+	NEG_IDLE,
+	NEG_AWAITING_RESPONSE,
+	NEG_RECEIVED_OFFER,
+	NEG_COOPERATING
+};
+
+NegotiationState current_negotiation_state = NEG_IDLE;
+int negotiation_partner_id = -1;
+float agreed_cash_split_mine = 0.5f;
+float agreed_fuel_split_mine = 0.5f;
+float last_proposed_cash_split_by_me = 0.5f;
+float last_proposed_fuel_split_by_me = 0.5f;
+float last_received_cash_split_from_partner = 0.5f;
+float last_received_fuel_split_from_partner = 0.5f;
 
 multicast_net *multi_reciv;         // wsk do obiektu zajmujacego sie odbiorem komunikatow
 multicast_net *multi_send;          //   -||-  wysylaniem komunikatow
@@ -57,28 +74,48 @@ int cursor_x, cursor_y;                         // polo¿enie kursora myszki w c
 extern float TransferSending(int ID_receiver, int transfer_type, float transfer_value);
 
 enum frame_types {
-	OBJECT_STATE, ITEM_TAKING, ITEM_RENEWAL, COLLISION, TRANSFER
+	OBJECT_STATE,           // Istniejący
+	ITEM_TAKING,            // Istniejący
+	ITEM_RENEWAL,           // Istniejący
+	COLLISION,              // Istniejący
+	TRANSFER,               // Istniejący
+
+	// Nowe typy dla negocjacji (Task 2)
+	NEGOTIATION_INITIATE,   // Zapytanie o rozpoczęcie negocjacji / pierwsza oferta
+	NEGOTIATION_OFFER,      // Kolejna oferta w trakcie negocjacji
+	NEGOTIATION_ACCEPT,     // Akceptacja oferty
+	NEGOTIATION_RESIGN,     // Rezygnacja z negocjacji
+	NEGOTIATION_CONFIRM_COOP // Potwierdzenie nawiązania współpracy (opcjonalne, ale może być przydatne)
 };
 
 enum transfer_types { MONEY, FUEL};
 
 struct Frame
 {
-	int iID;
+	int iID;                   // ID nadawcy
 	int frame_type;
-	ObjectState state;
+	ObjectState state;         // Stan obiektu nadawcy (może być przydatny do oceny przez partnera)
 	
-	int iID_receiver;      // nr ID adresata wiadomoœci (pozostali uczestnicy powinni wiadomoœæ zignorowaæ)
+	int iID_receiver;          // ID adresata wiadomości (dla wiadomości bezpośrednich, np. w negocjacji)
 
-	int item_number;     // nr przedmiotu, który zosta³ wziêty lub odzyskany
-	Vector3 vdV_collision;     // wektor prêdkoœci wyjœciowej po kolizji (uczestnik o wskazanym adresie powinien 
-	// przyj¹æ t¹ prêdkoœæ)  
+	int item_number;           // Dla ITEM_TAKING, ITEM_RENEWAL
+	Vector3 vdV_collision;     // Dla COLLISION
 
-	int transfer_type;        // gotówka, paliwo
-	float transfer_value;  // iloœæ gotówki lub paliwa 
-	int team_number;
+	int transfer_type;         // Dla TRANSFER
+	float transfer_value;      // Dla TRANSFER
+	int team_number;           // Identyfikator drużyny po nawiązaniu współpracy
 
-	long existing_time;        // czas jaki uplyn¹³ od uruchomienia programu
+	// Nowe pola dla negocjacji (Task 2)
+	int negotiating_partner_ID; // ID partnera, z którym prowadzona jest negocjacja (lub proponowana)
+	                            // W przypadku NEGOTIATION_INITIATE może być 0 (do wszystkich) lub ID konkretnego gracza.
+	                            // W NEGOTIATION_OFFER/ACCEPT/RESIGN to ID drugiej strony.
+	float proposed_cash_split_sender;  // Proponowany przez NADAWCĘ udział w gotówce (np. 0.0 do 1.0, gdzie 0.5 to 50%)
+	float proposed_fuel_split_sender;  // Proponowany przez NADAWCĘ udział w paliwie
+	                                   // Udział odbiorcy byłby (1.0 - proposed_xxx_split_sender)
+	// Można też dodać pole na wiadomość tekstową dla negocjacji, jeśli chcemy pozwolić na bardziej swobodne wiadomości
+	// char negotiation_message[128]; 
+
+	long existing_time;        // Czas istnienia programu nadawcy
 };
 
 
@@ -175,6 +212,105 @@ DWORD WINAPI ReceiveThreadFunction(void *ptr)
 			}
 			break;
 		}
+		case NEGOTIATION_INITIATE:
+		{
+			// Odbieramy tylko jeśli wiadomość jest do nas skierowana lub do wszystkich (jeśli iID_receiver == 0)
+			// I jeśli nie jesteśmy aktualnie w innej negocjacji/współpracy (chyba że chcemy pozwolić na wiele zapytań)
+			if (frame.iID != my_vehicle->iID && (frame.iID_receiver == my_vehicle->iID || frame.iID_receiver == 0) )
+			{
+				// Na razie tylko logowanie, później dodamy logikę i UI
+				fprintf(f, "Odebrano NEGOTIATION_INITIATE od ID: %d, propozycja: cash %.2f%%, fuel %.2f%%\n",
+					frame.iID, frame.proposed_cash_split_sender * 100.0f, frame.proposed_fuel_split_sender * 100.0f);
+				sprintf(par_view.inscription1, "Oferta negocjacji od ID %d (C:%.0f%% F:%.0f%%). Klawisze: Y-Akcept, O-Oferta, P-Odrzuc", 
+                        frame.iID, frame.proposed_cash_split_sender * 100.0f, frame.proposed_fuel_split_sender * 100.0f);
+
+				// Prosta logika: jeśli nie jesteśmy zajęci, przyjmujemy ofertę do rozpatrzenia
+				if (current_negotiation_state == NEG_IDLE) {
+					current_negotiation_state = NEG_RECEIVED_OFFER;
+					negotiation_partner_id = frame.iID; // To jest ID inicjatora
+					last_received_cash_split_from_partner = frame.proposed_cash_split_sender;
+					last_received_fuel_split_from_partner = frame.proposed_fuel_split_sender;
+				} else if (current_negotiation_state == NEG_AWAITING_RESPONSE && negotiation_partner_id == frame.iID) {
+                    // To może być odpowiedź na naszą inicjację - jeśli druga strona też zainicjowała
+                    // Na razie upraszczamy, że pierwsza inicjatywa "wygrywa" lub jest rozpatrywana
+                     fprintf(f, "Odebrano kontr-inicjacje od ID: %d, podczas gdy czekamy na odpowiedz.\n", frame.iID);
+                } else {
+                     fprintf(f, "Odebrano NEGOTIATION_INITIATE od ID: %d, ale jestem zajety.\n", frame.iID);
+                }
+
+			}
+			break;
+		}
+		case NEGOTIATION_OFFER:
+		{
+			// Odbieramy tylko jeśli wiadomość jest do nas skierowana i od naszego aktualnego partnera negocjacyjnego
+			if (frame.iID != my_vehicle->iID && frame.iID_receiver == my_vehicle->iID && negotiation_partner_id == frame.iID)
+			{
+				fprintf(f, "Odebrano NEGOTIATION_OFFER od ID: %d, propozycja: cash %.2f%%, fuel %.2f%%\n",
+					frame.iID, frame.proposed_cash_split_sender * 100.0f, frame.proposed_fuel_split_sender * 100.0f);
+				sprintf(par_view.inscription1, "Nowa oferta od ID %d (C:%.0f%% F:%.0f%%). Klawisze: Y-Akcept, O-Oferta, P-Odrzuc", 
+                        frame.iID, frame.proposed_cash_split_sender * 100.0f, frame.proposed_fuel_split_sender * 100.0f);
+				
+                if (current_negotiation_state == NEG_AWAITING_RESPONSE || current_negotiation_state == NEG_RECEIVED_OFFER) {
+					current_negotiation_state = NEG_RECEIVED_OFFER;
+					last_received_cash_split_from_partner = frame.proposed_cash_split_sender;
+					last_received_fuel_split_from_partner = frame.proposed_fuel_split_sender;
+				}
+			}
+			break;
+		}
+		case NEGOTIATION_ACCEPT:
+		{
+			// Odbieramy tylko jeśli wiadomość jest do nas skierowana i od naszego aktualnego partnera negocjacyjnego
+			if (frame.iID != my_vehicle->iID && frame.iID_receiver == my_vehicle->iID && negotiation_partner_id == frame.iID)
+			{
+				fprintf(f, "Odebrano NEGOTIATION_ACCEPT od ID: %d. Ustalono podzial: cash %.2f%% (dla mnie), fuel %.2f%% (dla mnie)\n",
+					frame.iID, (1.0f - frame.proposed_cash_split_sender) * 100.0f, (1.0f - frame.proposed_fuel_split_sender) * 100.0f);
+				sprintf(par_view.inscription1, "ID %d zaakceptowal oferte! Wspolpraca. (Ty: C:%.0f%% F:%.0f%%)",
+                        frame.iID, (1.0f - frame.proposed_cash_split_sender) * 100.0f, (1.0f - frame.proposed_fuel_split_sender) * 100.0f);
+
+                if (current_negotiation_state == NEG_AWAITING_RESPONSE) { // Partner zaakceptował naszą ostatnią ofertę
+					current_negotiation_state = NEG_COOPERATING;
+					// Nasz udział to to co ostatnio zaproponowaliśmy
+					agreed_cash_split_mine = last_proposed_cash_split_by_me; 
+					agreed_fuel_split_mine = last_proposed_fuel_split_by_me;
+                    // TODO: Można wysłać NEGOTIATION_CONFIRM_COOP
+				} else {
+                    fprintf(f, "Odebrano NEGOTIATION_ACCEPT w nieoczekiwanym stanie.\n");
+                }
+			}
+			break;
+		}
+		case NEGOTIATION_RESIGN:
+		{
+			// Odbieramy tylko jeśli wiadomość jest do nas skierowana i od naszego aktualnego partnera negocjacyjnego
+			if (frame.iID != my_vehicle->iID && frame.iID_receiver == my_vehicle->iID && negotiation_partner_id == frame.iID)
+			{
+				fprintf(f, "Odebrano NEGOTIATION_RESIGN od ID: %d. Negocjacje zakonczone.\n", frame.iID);
+				sprintf(par_view.inscription1, "ID %d zrezygnowal z negocjacji.", frame.iID);
+				
+                if (current_negotiation_state == NEG_AWAITING_RESPONSE || current_negotiation_state == NEG_RECEIVED_OFFER) {
+					current_negotiation_state = NEG_IDLE;
+					negotiation_partner_id = -1;
+				}
+			}
+			break;
+		}
+        case NEGOTIATION_CONFIRM_COOP: // Opcjonalne
+        {
+            if (frame.iID != my_vehicle->iID && frame.iID_receiver == my_vehicle->iID && negotiation_partner_id == frame.iID)
+            {
+                fprintf(f, "Odebrano NEGOTIATION_CONFIRM_COOP od ID: %d.\n", frame.iID);
+                // Można tu potwierdzić, że obie strony są zsynchronizowane co do współpracy
+                if(current_negotiation_state == NEG_RECEIVED_OFFER) { // Jeśli my zaakceptowaliśmy, a teraz dostajemy potwierdzenie
+                    current_negotiation_state = NEG_COOPERATING;
+                     // Nasz udział to to co zaakceptowaliśmy (czyli 1 - to co partner proponował w swojej ostatniej ofercie, którą my przyjęliśmy)
+                    agreed_cash_split_mine = 1.0f - last_received_cash_split_from_partner;
+                    agreed_fuel_split_mine = 1.0f - last_received_fuel_split_from_partner;
+                }
+            }
+            break;
+        }
 		
 		} // switch po typach ramek
 		// Opuszczenie ścieżki krytycznej / Release the Critical section
@@ -603,6 +739,62 @@ void MessagesHandling(UINT message_type, WPARAM wParam, LPARAM lParam)
 			CTRL_pressed = 1;
 			break;
 		}
+		case 'N': // Klawisz do inicjowania negocjacji
+		{
+			if (current_negotiation_state == NEG_IDLE) // Można inicjować tylko gdy nie jesteśmy w trakcie innych negocjacji
+			{
+				int selected_partner_id = -1;
+				// Sprawdź, czy jakiś pojazd sieciowy jest zaznaczony
+				for (map<int, MovableObject*>::iterator it = network_vehicles.begin(); it != network_vehicles.end(); ++it)
+				{
+					if (it->second && it->second->if_selected)
+					{
+						selected_partner_id = it->second->iID;
+						break; // Zakładamy, że można negocjować tylko z jednym na raz
+					}
+				}
+
+				if (selected_partner_id != -1)
+				{
+					Frame frame;
+					frame.frame_type = NEGOTIATION_INITIATE;
+					frame.iID = my_vehicle->iID;
+					frame.state = my_vehicle->State(); // Wyślij swój aktualny stan
+					frame.iID_receiver = selected_partner_id; // Bezpośrednio do wybranego partnera
+					
+					// Ustawienie domyślnej/początkowej propozycji podziału (np. 50/50)
+					// Gracz proponuje swój udział, udział partnera będzie 1.0 - propozycja
+					frame.proposed_cash_split_sender = 0.5f; // np. 50% dla mnie (nadawcy)
+					frame.proposed_fuel_split_sender = 0.5f; // np. 50% dla mnie (nadawcy)
+					
+					frame.negotiating_partner_ID = selected_partner_id; // Wskazujemy, z kim chcemy negocjować
+					frame.existing_time = clock() - start_time;
+
+					int iRozmiar = multi_send->send((char*)&frame, sizeof(Frame));
+					if (iRozmiar == sizeof(Frame))
+					{
+						sprintf(par_view.inscription2, "Wyslano propozycje negocjacji do ID: %d (50/50 cash, 50/50 fuel)", selected_partner_id);
+						current_negotiation_state = NEG_AWAITING_RESPONSE;
+						negotiation_partner_id = selected_partner_id;
+						last_proposed_cash_split_by_me = frame.proposed_cash_split_sender;
+						last_proposed_fuel_split_by_me = frame.proposed_fuel_split_sender;
+					}
+					else
+					{
+						sprintf(par_view.inscription2, "Blad wysylania propozycji negocjacji.");
+					}
+				}
+				else
+				{
+					sprintf(par_view.inscription2, "Zaznacz pojazd, z ktorym chcesz negocjowac (PPM).");
+				}
+			}
+			else
+			{
+				sprintf(par_view.inscription2, "Jestes juz w trakcie negocjacji lub wspolpracy.");
+			}
+			break;
+		} // Koniec case 'N'
 		case VK_MENU:
 		{
 			ALT_pressed = 1;
